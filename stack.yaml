@@ -8,7 +8,10 @@ packages:
 - '.'
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
-extra-deps: []
+extra-deps: 
+- 'api-builder-0.11.0.0'
+- 'http-types-0.8.6'
+- 'http-client-0.4.20'
 
 # Override default flag values for local packages and extra-deps
 flags: {}
