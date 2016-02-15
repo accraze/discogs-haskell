@@ -98,4 +98,4 @@ mainBaseURL :: Text
 mainBaseURL = "https://api.discogs.com"
 
 loginBaseURL :: Text
-loginBaseURL = "https://ssl.reddit.com"
+loginBaseURL = "https://api.discogs.com"
