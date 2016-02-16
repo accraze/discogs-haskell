@@ -6,6 +6,8 @@ module Discogs.Types.Discogs
   , receiveRoute
   , nest
   , failWith
+  , Modhash(..)
+  , LoginDetails(..)
   , withBaseURL
   , builder
   , mainBaseURL
@@ -73,6 +75,22 @@ withBaseURL u f = DiscogsT $ liftF $ WithBaseURL u f id
 failWith :: Monad m => APIError DiscogsError -> DiscogsT m a
 failWith = DiscogsT . liftF . FailWith
 
+newtype Modhash = Modhash Text
+  deriving (Show, Read, Eq)
+
+instance FromJSON Modhash where
+  parseJSON (Object o) =
+    Modhash <$> ((o .: "json") >>= (.: "data") >>= (.: "modhash"))
+  parseJSON _ = mempty
+
+data LoginDetails = LoginDetails Modhash CookieJar
+  deriving (Show, Eq)
+
+instance Receivable LoginDetails where
+  receive x = do
+    (resp, mh) <- receive x
+    return $ LoginDetails (unwrapJSON mh) (responseCookieJar (resp :: Response ByteString))
+
 newtype POSTWrapped a = POSTWrapped a
   deriving (Show, Read, Eq)
 
@@ -92,7 +110,7 @@ addHeader (Just hdr) req = req { requestHeaders =
   ("User-Agent", hdr) : requestHeaders req }
 
 addAPIType :: Route -> Route
-addAPIType (Route fs ps m) = Route fs ("api_type" =. ("json" :: Text) : ps) m
+addAPIType (Route fs ps m) = Route fs ps m
 
 mainBaseURL :: Text
 mainBaseURL = "https://api.discogs.com"

@@ -7,16 +7,14 @@ module Discogs
   , DiscogsOptions(..)
   , defaultDiscogsOptions
   , LoginMethod(..)
-  -- * Re-exports
   , APIError(..)
-  , module Discogs.Actions
-  , module Discogs.Types
   , module Discogs.Types.Error
   , module Discogs.Types.Discogs) where
 
-import Discogs.Actions.Artist
-import Discogs.Types.Artist
---import Discogs.Routes.Artist as Routes
+import Discogs.Actions
+import Discogs.Types
+import Discogs.Login
+import Discogs.Types.Error
 import Discogs.Types.Discogs hiding (info, should)
 
 import Control.Concurrent
