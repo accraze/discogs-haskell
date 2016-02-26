@@ -2,3 +2,4 @@ module Discogs.Routes
   ( module Routes ) where
 
 import Discogs.Routes.Artist as Routes
+import Discogs.Routes.Release as Routes
