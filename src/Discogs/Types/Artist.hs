@@ -61,7 +61,7 @@ instance FromJSON Image where
 data MembersList 
         = MembersList {
                     membersList :: !Array
-                } deriving Show
+                } deriving (Show, Eq)
 
 instance FromJSON MembersList where
     parseJSON (Object o) = MembersList <$> (o .: "members")
@@ -74,3 +74,23 @@ data Member = Member {active :: Bool
                 deriving (Show, Eq, Generic)
 
 instance FromJSON Member
+
+data ReleaseArtistList
+        = ReleaseArtistList {
+                    releaseArtists :: !Array
+                } deriving (Show, Eq)
+
+instance FromJSON ReleaseArtistList where
+    parseJSON (Object o) = ReleaseArtistList <$> (o .: "artists")
+    parseJSON _ = mzero
+
+data ReleaseArtist = ReleaseArtist {anv :: String
+                , rId :: Int
+                , join :: String
+                , rName :: String
+                , rResource_url :: String
+                , role :: String
+                , tracks :: String }
+                deriving (Show, Eq, Generic)
+
+instance FromJSON ReleaseArtist
