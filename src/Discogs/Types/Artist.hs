@@ -5,6 +5,7 @@ module Discogs.Types.Artist where
 import GHC.Generics
 
 import Control.Applicative
+import Control.Monad
 import Data.Aeson
 import Data.Monoid
 import Data.Text (Text)
@@ -27,25 +28,11 @@ data Artist =
        , uri :: Maybe Text
        , data_quality :: Text
        , namevariations :: Maybe [Text]
-       , urls :: [Text] }
-       --, images :: ImagesList
-       --, members :: Maybe MembersList }
+       , urls :: [Text] 
+       , members :: !Array }
   deriving (Show, Eq, Generic)
 
 instance FromJSON Artist
-
---instance FromJSON Artist where
---  parseJSON (Object o) = Artist <$> o .: "id"
---                              <*> o .: "profile"
---                              <*> o .: "releases_url"
---                              <*> o .:? "resource_url"
---                              <*> o .:? "uri"
---                              <*> o .: "data_quality"
---                              <*> o .:? "namevariations"
---                              <*> o .: "urls"
---                              <*> o .: "images"
---                              <*> o .:? "members"
---  parseJSON _ = mempty
 
 
 newtype ImagesList = ImagesList {imagesList :: [Image]}
@@ -70,12 +57,14 @@ instance FromJSON Image where
                                  <*> o .: "width"
     parseJSON _ = mempty
 
-newtype MembersList = MembersList {membersList :: [Member]}
-    deriving (Show, Eq)
+data MembersList 
+        = MembersList {
+                    membersList :: !Array
+                } deriving Show
 
 instance FromJSON MembersList where
-    parseJSON (Object o) = MembersList <$> o .: "members"
-    parseJSON _ = mempty
+    parseJSON (Object o) = MembersList <$> (o .: "members")
+    parseJSON _ = mzero
 
 data Member = Member {active :: Bool
                 , id2 :: Integer
@@ -83,11 +72,4 @@ data Member = Member {active :: Bool
                 , mResource_url :: String }
                 deriving (Show, Eq, Generic)
 
-instance FromJSON Member 
-
---instance FromJSON Member where
---    parseJSON (Object o) = Member <$> o .: "active" 
---                                 <*> o .: "id"
---                                 <*> o .: "name"
---                                 <*> o .: "resource_url"
---    parseJSON _ = mempty
+instance FromJSON Member
