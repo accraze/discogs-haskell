@@ -29,20 +29,21 @@ data Artist =
        , data_quality :: Text
        , namevariations :: Maybe [Text]
        , urls :: [Text] 
+       , images :: !Array
        , members :: !Array }
   deriving (Show, Eq, Generic)
 
 instance FromJSON Artist
 
 
-newtype ImagesList = ImagesList {imagesList :: [Image]}
+data ImagesList = ImagesList {imagesList :: !Array}
     deriving (Show, Eq, Generic)
 
 instance FromJSON ImagesList
 
 data Image = Image {height :: Int
                 , iResource_url :: String
-                , typ :: String
+                , iType :: String
                 , iUri :: String
                 , uri150 :: String
                 , width :: Int }
