@@ -8,7 +8,7 @@ Work in Progress
 #### Artists
 ##### GET /artists/:artistId
 ```
-ghci> runDiscogsAnon $ Discogs.Actions.Artist.getArtist $ ArtistID "108713"
+ghci> runDiscogsAnon $ Discogs.Actions.getArtist $ ArtistID "108713"
 ```
 200 returns:
 ```
@@ -25,7 +25,7 @@ urls = ["http://www.nickelback.com/","http://en.wikipedia.org/wiki/Nickelback"]}
 #### Releases
 ##### GET /releases/:releaseId
 ```
-ghci> runDiscogsAnon $ Discogs.Actions.Release.getRelease $ ReleaseID "249504"
+ghci> runDiscogsAnon $ Discogs.Actions.getRelease $ ReleaseID "249504"
 ```
 200 returns:
 ```
