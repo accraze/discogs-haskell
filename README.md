@@ -21,6 +21,22 @@ namevariations = Just ["Nickleback","\12491\12483\12465\12523\12496\12483\12463"
 urls = ["http://www.nickelback.com/","http://en.wikipedia.org/wiki/Nickelback"]})
 ```
 
+##### GET /artists/:artistId/releases
+```
+ghci> runDiscogsAnon $ Discogs.Actions.getArtistReleases $ ArtistID "108713"
+```
+200 returns:
+```
+Right (ReleaseList {releases = [Object (fromList [("status",String "Accepted"),
+("format",String "CD, EP"),("resource_url",String "https://api.discogs.com/releases/4299404"),
+("thumb",String ""),("role",String "Main"),("year",Number 1996.0),("id",Number 4299404.0),
+("title",String "Hesher"),("type",String "release"),("label",String "Not On Label (Nickelback Self-released)"),
+("artist",String "Nickelback")]),Object (fromList [("main_release",Number 1078373.0),
+("resource_url",String "https://api.discogs.com/masters/173765"),("thumb",String ""),
+("role",String "Main"),("year",Number 1996.0),("id",Number 173765.0),("title",String "Curb"),
+("type",String "master"),("artist",String "Nickelback")]).....
+```
+
 
 #### Releases
 ##### GET /releases/:releaseId

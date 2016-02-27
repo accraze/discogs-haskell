@@ -1,6 +1,7 @@
 module Discogs.Routes.Artist where
 
 import Discogs.Types.Artist
+import Discogs.Types.Release
 
 import Network.API.Builder.Routes
 
