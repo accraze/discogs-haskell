@@ -2,8 +2,8 @@ name:                discogs-haskell
 version:             0.1.0.0
 synopsis:            Client for Discogs REST API
 description:         Please see README.md
-homepage:            http://github.com/githubuser/discogs-haskell#readme
-license:             MIT
+homepage:            http://github.com/accraze/discogs-haskell#readme
+license:             BSD3
 license-file:        LICENSE
 author:              accraze
 maintainer:          accraze@gmail.com
@@ -48,4 +48,5 @@ library
     unordered-containers == 0.2.5.*,
     vector >= 0.10 && < 0.12
   ghc-options: -Wall
+
 

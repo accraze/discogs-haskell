@@ -54,3 +54,7 @@ in the UK by BMG Records \8226  Distribu\233 en Europe par BMG/Ariola \8226 Vert
  d\252rch BMG/Ariola.\n\nCenter labels:\n\8471 1987 Pete Waterman Ltd.\nOriginal Sound Recording made by PWL.\
  nBMG Records (UK) Ltd. are the exclusive licensees for the world.\n\nDurations do not appear on the release.\n"})
 ```
+
+## License:
+
+[BSD3](https://github.com/accraze/discogs-haskell/blob/master/LICENSE) License 2016 © Andy Craze
