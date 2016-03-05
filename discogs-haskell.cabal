@@ -22,6 +22,14 @@ library
   other-modules:
     Discogs.Routes
     Discogs.Routes.Artist
+    Discogs.Actions.Release
+    Discogs.Login
+    Discogs.Routes.Release
+    Discogs.Types.Discogs
+    Discogs.Types.Error
+    Discogs.Types.Label
+    Discogs.Types.Release
+    Discogs.Types.User
   hs-source-dirs:      src/
   default-extensions:
     FlexibleInstances
@@ -49,4 +57,21 @@ library
     vector >= 0.10 && < 0.12
   ghc-options: -Wall
 
+test-suite test
+  hs-source-dirs: test
+  main-is: Spec.hs
+  default-extensions: OverloadedStrings
+  default-language: Haskell2010
+  type: exitcode-stdio-1.0
+  build-depends:
+    base == 4.*,
+    Cabal >= 1.16.0,
+    aeson,
+    api-builder,
+    bytestring,
+    hspec,
+    text,
+    time,
+    transformers
+  ghc-options: -Wall
 

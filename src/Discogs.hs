@@ -11,11 +11,11 @@ module Discogs
   , module Discogs.Types.Error
   , module Discogs.Types.Discogs) where
 
-import Discogs.Actions
-import Discogs.Types
+import Discogs.Actions()
+import Discogs.Types()
 import Discogs.Login
 import Discogs.Types.Error
-import Discogs.Types.Discogs hiding (info, should)
+import Discogs.Types.Discogs
 
 import Control.Concurrent
 import Control.Monad
