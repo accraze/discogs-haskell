@@ -55,6 +55,35 @@ in the UK by BMG Records \8226  Distribu\233 en Europe par BMG/Ariola \8226 Vert
  nBMG Records (UK) Ltd. are the exclusive licensees for the world.\n\nDurations do not appear on the release.\n"})
 ```
 
+## Build Locally
+
+To install and build locally, clone the repo:
+
+```
+$ git clone http://github.com/accraze/discogs-haskell.git
+```
+
+This project is built using [Stack](http://docs.haskellstack.org/en/stable/README.html). To install all deps and build an executable:
+
+```
+$ stack setup
+...
+$ stack build
+
+```
+
+Then you can use the `ghci` REPL to use the client.
+
+```
+$ stack ghci
+```
+
+### Run Tests
+Run test suite using this command
+```
+$ stack test
+```
+
 ## License:
 
 [BSD3](https://github.com/accraze/discogs-haskell/blob/master/LICENSE) License 2016 © Andy Craze
