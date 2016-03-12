@@ -55,6 +55,23 @@ in the UK by BMG Records \8226  Distribu\233 en Europe par BMG/Ariola \8226 Vert
  nBMG Records (UK) Ltd. are the exclusive licensees for the world.\n\nDurations do not appear on the release.\n"})
 ```
 
+#### Masters
+##### GET /masters/:masterId
+```
+ghci> runDiscogsAnon $ Discogs.Actions.getMaster $ MasterID "1000"
+```
+200 returns:
+```
+Right (Master {title = "Stardiver", id = 1000, artists = [Object (fromList 
+[("tracks",String ""),("join",String ""),("resource_url",
+String "https://api.discogs.com/artists/21849"),("role",String ""),
+("name",String "Electric Universe"),("id",Number 21849.0),("anv",String "")])], 
+data_quality = "Correct", genres = ["Electronic"], images = Just [Object 
+(fromList [("height",Number 569.0)......
+...
+```
+
+
 ## Build Locally
 
 To install and build locally, clone the repo:
