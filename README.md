@@ -71,6 +71,26 @@ data_quality = "Correct", genres = ["Electronic"], images = Just [Object
 ...
 ```
 
+#### Labels
+##### GET /labels/:labelId
+```
+ghci> runDiscogsAnon $ Discogs.Actions.getLabel $ LabelID "1"
+```
+200 returns:
+```
+Right (Label {id = 1, profile = "[a=Carl Craig]'s classic techno label founded in 1991.\r
+\n\r\nOn at least 1 release, Planet E is listed as publisher.", releases_url =
+ "https://api.discogs.com/labels/1/releases", name = "Planet E", 
+ contact_info = "Planet E Communications\r\nP.O. Box 27218\r\nDetroit, Michigan, MI 48227
+ \r\nUSA\r\n\r\nPhone: +1 313 874 8729\r\nFax: +1 313 874 8732\r\nEmail: info@Planet-e.net", 
+ uri = "https://www.discogs.com/label/1-Planet-E", sublabels = [Object 
+ (fromList [("resource_url",String "https://api.discogs.com/labels/86537"),("name",String "Antidote (4)"),
+ ("id",Number 86537.0)]),Object (fromList [("resource_url",String "https://api.discogs.com/labels/41841"),
+ ("name",String "Community Projects"),("id",Number 41841.0)]),Object (fromList [("resource_url",
+ String "https://api.discogs.com/labels/153760"),("name",String "Guilty Pleasures"),
+...
+```
+
 
 ## Build Locally
 
