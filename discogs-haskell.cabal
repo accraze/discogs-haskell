@@ -19,6 +19,7 @@ library
     Discogs.Actions.Artist
     Discogs.Types
     Discogs.Types.Artist
+    Discogs.Types.Release
   other-modules:
     Discogs.Routes
     Discogs.Routes.Artist
@@ -28,7 +29,6 @@ library
     Discogs.Types.Discogs
     Discogs.Types.Error
     Discogs.Types.Label
-    Discogs.Types.Release
     Discogs.Types.User
     Discogs.Actions.Label
     Discogs.Actions.Master
@@ -63,7 +63,7 @@ library
   ghc-options: -Wall
 
 test-suite test
-  hs-source-dirs: test
+  hs-source-dirs: test/
   main-is: Spec.hs
   default-extensions: OverloadedStrings
   default-language: Haskell2010
@@ -75,8 +75,12 @@ test-suite test
     api-builder,
     bytestring,
     hspec,
+    discogs-haskell,
     text,
     time,
     transformers
+  other-modules:
+    Discogs.Types.ArtistSpec
+    Discogs.Types.ReleaseSpec
   ghc-options: -Wall
 

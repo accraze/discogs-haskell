@@ -23,6 +23,7 @@ instance FromJSON ArtistID
 data Artist =
   Artist { 
         profile :: Maybe Text
+       , id :: Int
        , releases_url :: Text
        , resource_url :: Maybe Text
        , uri :: Maybe Text
@@ -31,7 +32,7 @@ data Artist =
        , urls :: [Text] 
        , images :: !Array
        , members :: !Array }
-  deriving (Show, Eq, Generic)
+  deriving (Show, Eq, Read, Generic)
 
 instance FromJSON Artist
 
