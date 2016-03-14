@@ -91,6 +91,24 @@ Right (Label {id = 1, profile = "[a=Carl Craig]'s classic techno label founded i
 ...
 ```
 
+##### GET /labels/:labelId/releases
+```
+ghci> runDiscogsAnon $ Discogs.Actions.getLabelReleases $ LabelID "1"
+```
+200 returns:
+```
+ight (LabelReleaseList {pagination = ReleasePagination {per_page = 50, page = 1, 
+pages = 8, p_urls = Urls {last = "https://api.discogs.com/labels/1/releases?per_page=50&page=8", 
+next = "https://api.discogs.com/labels/1/releases?per_page=50&page=2"}, items = 374}, 
+releases = [Object (fromList [("status",String "Accepted"),("format",String "CD, Mixed"),
+("resource_url",String "https://api.discogs.com/releases/2801"),("thumb",String ""),
+("catno",String "!K7071CD"),("year",Number 1998.0),("id",Number 2801.0),
+("title",String "DJ-Kicks"),("artist",String "Andrea Parker")]),Object (fromList 
+[("status",String "Accepted"),("format",String "12\""),("resource_url",String 
+"https://api.discogs.com/releases/65040"),("thumb",String ""),("catno",String "2INZ 00140"),
+...
+```
+
 
 ## Build Locally
 

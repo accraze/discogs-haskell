@@ -8,3 +8,8 @@ getLabel :: LabelID -> Route
 getLabel (LabelID label) = Route [ "labels", label ]
                                   []
                                   "GET"
+
+getLabelReleases :: LabelID -> Route
+getLabelReleases (LabelID label) = Route [ "labels", label, "releases" ]
+                                  []
+                                  "GET"

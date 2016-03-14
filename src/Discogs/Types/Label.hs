@@ -79,3 +79,60 @@ instance FromJSON Sublabel where
                                  <*> o .: "name"
                                  <*> o .: "resource_url"
     parseJSON _ = mempty
+
+
+data ReleasePagination
+    = ReleasePagination {  
+                    per_page  :: Int
+                    ,page     :: Int
+                    ,pages    :: Int
+                    ,p_urls   :: Urls
+                    ,items    :: Int
+                    } deriving (Show, Generic, Eq)
+
+instance FromJSON ReleasePagination where
+    parseJSON (Object o) = ReleasePagination <$> o .: "per_page" 
+                             <*> o .: "page"
+                             <*> o .: "pages"
+                             <*> o .: "urls"
+                             <*> o .: "items"
+    parseJSON _ = mempty
+
+data Urls
+    = Urls {  last  :: String
+              ,next    :: String
+            } deriving (Show, Generic, Eq)
+
+instance FromJSON Urls
+
+data LabelReleaseList
+    = LabelReleaseList {  
+                    pagination  :: ReleasePagination
+                    ,releases   :: !Array
+                    } deriving (Show, Generic, Eq)
+
+instance FromJSON LabelReleaseList
+
+data LabelRelease
+    = LabelRelease {  artist              :: String
+                    ,release_catno        :: String
+                    ,format               :: String
+                    ,release_id           :: String
+                    ,release_resource_url :: String
+                    ,status               :: String
+                    ,thumb                :: String
+                    ,title                :: String
+                    ,year                 :: Int
+                    } deriving (Show, Generic, Eq)
+
+instance FromJSON LabelRelease where
+    parseJSON (Object o) = LabelRelease <$> o .: "artist" 
+                             <*> o .: "catno"
+                             <*> o .: "format"
+                             <*> o .: "release_id"
+                             <*> o .: "resource_url"
+                             <*> o .: "status"
+                             <*> o .: "thumb"
+                             <*> o .: "title"
+                             <*> o .: "year"
+    parseJSON _ = mempty
