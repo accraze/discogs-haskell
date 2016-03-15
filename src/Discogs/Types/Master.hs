@@ -15,6 +15,7 @@ import Discogs.Types.Artist
 import Discogs.Types.Label
 import Discogs.Types.User
 import Discogs.Types.Release
+import Discogs.Types.Pagination
 
 data MasterID = MasterID Text
   deriving (Show, Read, Eq, Ord, Generic)

@@ -14,6 +14,7 @@ import Network.API.Builder.Query
 import Discogs.Types.Artist
 import Discogs.Types.Label
 import Discogs.Types.User
+import Discogs.Types.Pagination
 
 newtype ReleaseID = ReleaseID Text
   deriving (Show, Read, Eq, Ord, Generic)
@@ -96,16 +97,6 @@ instance FromJSON ArtistRelease where
               <*> (o .: "year")
   parseJSON _ = mzero
 
-
-data Pagination
-    = Pagination {  per_page  :: Int
-                    ,items    :: Int
-                    ,page     :: Int
-                    ,pages    :: Int
-                    ,urls     :: Urls
-                    } deriving (Show, Generic, Eq)
-
-instance FromJSON Pagination
 
 data Format
     = Format {  descriptions  :: Maybe Array

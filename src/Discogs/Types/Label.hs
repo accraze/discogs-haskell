@@ -12,6 +12,7 @@ import Data.Text (Text)
 import Network.API.Builder.Query
 
 import Discogs.Types.Artist
+import Discogs.Types.Pagination
 
 data Company
     = Company {  
@@ -81,33 +82,9 @@ instance FromJSON Sublabel where
     parseJSON _ = mempty
 
 
-data ReleasePagination
-    = ReleasePagination {  
-                    per_page  :: Int
-                    ,page     :: Int
-                    ,pages    :: Int
-                    ,p_urls   :: Urls
-                    ,items    :: Int
-                    } deriving (Show, Generic, Eq)
-
-instance FromJSON ReleasePagination where
-    parseJSON (Object o) = ReleasePagination <$> o .: "per_page" 
-                             <*> o .: "page"
-                             <*> o .: "pages"
-                             <*> o .: "urls"
-                             <*> o .: "items"
-    parseJSON _ = mempty
-
-data Urls
-    = Urls {  last     :: Maybe String
-              ,next    :: Maybe String
-            } deriving (Show, Generic, Eq)
-
-instance FromJSON Urls
-
 data LabelReleaseList
     = LabelReleaseList {  
-                    pagination  :: ReleasePagination
+                    pagination  :: Pagination
                     ,releases   :: !Array
                     } deriving (Show, Generic, Eq)
 
