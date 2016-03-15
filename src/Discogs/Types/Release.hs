@@ -102,6 +102,7 @@ data Pagination
                     ,items    :: Int
                     ,page     :: Int
                     ,pages    :: Int
+                    ,urls     :: Urls
                     } deriving (Show, Generic, Eq)
 
 instance FromJSON Pagination

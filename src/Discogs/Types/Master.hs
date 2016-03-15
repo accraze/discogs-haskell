@@ -42,3 +42,11 @@ data Master =
   deriving (Show, Eq, Generic)
 
 instance FromJSON Master
+
+data MasterVersionsList =
+  MasterVersionsList { 
+       pagination :: Pagination
+       , versions :: !Array }
+  deriving (Show, Eq, Generic)
+
+instance FromJSON MasterVersionsList

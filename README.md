@@ -55,7 +55,7 @@ in the UK by BMG Records \8226  Distribu\233 en Europe par BMG/Ariola \8226 Vert
  nBMG Records (UK) Ltd. are the exclusive licensees for the world.\n\nDurations do not appear on the release.\n"})
 ```
 
-#### Masters
+#### Master Releases
 ##### GET /masters/:masterId
 ```
 ghci> runDiscogsAnon $ Discogs.Actions.getMaster $ MasterID "1000"
@@ -71,6 +71,21 @@ data_quality = "Correct", genres = ["Electronic"], images = Just [Object
 ...
 ```
 
+##### GET /masters/:masterId/versions
+```
+ghci> runDiscogsAnon $ Discogs.Actions.getMasterVersions $ MasterID "1000"
+```
+200 returns:
+```
+Right (MasterVersionsList {pagination = Pagination {per_page = 50, items = 4, 
+page = 1, pages = 1, urls = Urls {last = Nothing, next = Nothing}}, 
+versions = [Object (fromList [("status",String "Accepted"),
+("released",String "1997-03-14"),("country",String "Germany"),("format",String
+ "CD, Album, Mixed"),("resource_url",String "https://api.discogs.com/releases/66785"),
+ ("thumb",String ""),("catno",String "SPIRIT ZONE 027"),("id",Number 66785.0),
+ ("title",String "Stardiver"),("label",String "Spirit Zone Recordings")]),
+...
+```
 #### Labels
 ##### GET /labels/:labelId
 ```
@@ -83,11 +98,6 @@ Right (Label {id = 1, profile = "[a=Carl Craig]'s classic techno label founded i
  "https://api.discogs.com/labels/1/releases", name = "Planet E", 
  contact_info = "Planet E Communications\r\nP.O. Box 27218\r\nDetroit, Michigan, MI 48227
  \r\nUSA\r\n\r\nPhone: +1 313 874 8729\r\nFax: +1 313 874 8732\r\nEmail: info@Planet-e.net", 
- uri = "https://www.discogs.com/label/1-Planet-E", sublabels = [Object 
- (fromList [("resource_url",String "https://api.discogs.com/labels/86537"),("name",String "Antidote (4)"),
- ("id",Number 86537.0)]),Object (fromList [("resource_url",String "https://api.discogs.com/labels/41841"),
- ("name",String "Community Projects"),("id",Number 41841.0)]),Object (fromList [("resource_url",
- String "https://api.discogs.com/labels/153760"),("name",String "Guilty Pleasures"),
 ...
 ```
 
@@ -97,15 +107,11 @@ ghci> runDiscogsAnon $ Discogs.Actions.getLabelReleases $ LabelID "1"
 ```
 200 returns:
 ```
-ight (LabelReleaseList {pagination = ReleasePagination {per_page = 50, page = 1, 
+Right (LabelReleaseList {pagination = ReleasePagination {per_page = 50, page = 1, 
 pages = 8, p_urls = Urls {last = "https://api.discogs.com/labels/1/releases?per_page=50&page=8", 
 next = "https://api.discogs.com/labels/1/releases?per_page=50&page=2"}, items = 374}, 
 releases = [Object (fromList [("status",String "Accepted"),("format",String "CD, Mixed"),
-("resource_url",String "https://api.discogs.com/releases/2801"),("thumb",String ""),
-("catno",String "!K7071CD"),("year",Number 1998.0),("id",Number 2801.0),
-("title",String "DJ-Kicks"),("artist",String "Andrea Parker")]),Object (fromList 
-[("status",String "Accepted"),("format",String "12\""),("resource_url",String 
-"https://api.discogs.com/releases/65040"),("thumb",String ""),("catno",String "2INZ 00140"),
+("resource_url",String "https://api.discogs.com/releases/2801"),
 ...
 ```
 

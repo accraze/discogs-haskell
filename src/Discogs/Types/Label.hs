@@ -99,8 +99,8 @@ instance FromJSON ReleasePagination where
     parseJSON _ = mempty
 
 data Urls
-    = Urls {  last  :: String
-              ,next    :: String
+    = Urls {  last     :: Maybe String
+              ,next    :: Maybe String
             } deriving (Show, Generic, Eq)
 
 instance FromJSON Urls
