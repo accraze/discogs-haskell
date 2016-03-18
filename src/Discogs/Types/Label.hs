@@ -54,19 +54,6 @@ data Label
             } deriving (Show, Generic, Eq)
 
 instance FromJSON Label
-    --parseJSON (Object o) = Label <$> o .: "id"
-    --                             <*> o .: "profile"
-    --                             <*> o .: "releases_url"
-    --                             <*> o .: "name"
-    --                             <*> o .: "contact_info"
-    --                             <*> o .: "resource_url"
-    --                             <*> o .: "uri"
-    --                             <*> o .: "sublabels"
-    --                             <*> o .: "urls"
-    --                             <*> o .: "images"
-    --                             <*> o .: "resource_url"
-    --                             <*> o .: "data_quality"
-    --parseJSON _ = mempty
 
 data Sublabel
     = Sublabel {

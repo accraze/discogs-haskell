@@ -14,11 +14,8 @@ import Network.API.Builder.Query
 newtype ArtistID = ArtistID Text
   deriving (Show, Read, Eq, Ord, Generic)
 
-
 instance FromJSON ArtistID
---instance FromJSON ArtistID where
---  parseJSON (String s) = return $ ArtistID s
---  parseJSON _ = mempty
+
 
 data Artist =
   Artist { 

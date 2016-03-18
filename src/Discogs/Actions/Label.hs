@@ -9,7 +9,6 @@ import qualified Discogs.Routes.Label as Route
 import Control.Monad
 import Data.Default.Class
 import Data.Aeson
---import Network.API.Builder
 import qualified Data.Text as Text
 
 -- | Get the information Discogs exposes on master with the specified id

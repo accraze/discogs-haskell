@@ -68,9 +68,9 @@ runDiscogs user pass = runDiscogsWith def { loginMethod = Credentials user pass 
 runDiscogsAnon :: MonadIO m => DiscogsT m a -> m (Either (APIError DiscogsError) a)
 runDiscogsAnon = runDiscogsWith def
 
--- | Run a 'Discogs' or 'DiscogsT' action with custom settings. You probably won't need this function for
---   most things, but it's handy if you want to persist a connection over multiple 'Discogs' sessions or
---   use a custom user agent string.
+---- | Run a 'Discogs' or 'DiscogsT' action with custom settings. You probably won't need this function for
+----   most things, but it's handy if you want to persist a connection over multiple 'Discogs' sessions or
+----   use a custom user agent string.
 runDiscogsWith :: MonadIO m => DiscogsOptions -> DiscogsT m a -> m (Either (APIError DiscogsError) a)
 runDiscogsWith opts discogs = liftM dropResume $ runResumeDiscogsWith opts discogs
 
@@ -78,7 +78,7 @@ runDiscogsWith opts discogs = liftM dropResume $ runResumeDiscogsWith opts disco
 --   most things, but it's handy if you want to persist a connection over multiple 'Discogs' sessions or
 --   use a custom user agent string.
 runResumeDiscogsWith :: MonadIO m => DiscogsOptions -> DiscogsT m a -> m (Either (APIError DiscogsError, Maybe (DiscogsT m a)) a)
-runResumeDiscogsWith (DiscogsOptions rl man lm _ua) reddit = do
+runResumeDiscogsWith (DiscogsOptions rl man lm _ua) discogs = do
   manager <- case man of
     Just m -> return m
     Nothing -> liftIO $ newManager tlsManagerSettings
@@ -87,10 +87,10 @@ runResumeDiscogsWith (DiscogsOptions rl man lm _ua) reddit = do
     StoredDetails ld -> return $ Right $ Just ld
     Credentials user pass -> liftM (fmap Just) $ interpretIO (DiscogsState loginBaseURL rl manager [] Nothing) $ login user pass
   case loginCreds of
-    Left (err, _) -> return $ Left (err, Just reddit)
+    Left (err, _) -> return $ Left (err, Just discogs)
     Right lds ->
       interpretIO
-        (DiscogsState mainBaseURL rl manager [("User-Agent", "reddit-haskell dev version")] lds) reddit
+        (DiscogsState mainBaseURL rl manager [("User-Agent", "discogs-haskell dev version")] lds) discogs
 
 interpretIO :: MonadIO m => DiscogsState -> DiscogsT m a -> m (Either (APIError DiscogsError, Maybe (DiscogsT m a)) a)
 interpretIO rstate (DiscogsT r) =
