@@ -10,29 +10,24 @@ import Prelude
 import qualified Data.Vector as V
 
 data DiscogsError = DiscogsError Object
-                 | FailError Text
+                 | NoRelease
+                 | NoArtist
                  | RateLimitError Integer Text
-                 | InvalidResponseError
+                 | NoMasterRelease
+                 | NoLabel
                  deriving (Show, Eq)
 
 instance FromJSON DiscogsError where
   parseJSON (Object o) = do
-    Array errors <- o .: "json" >>= (.: "errors")
+    Array errors <- o .: "json" >>= (.: "message")
     case errors !? 0 of
       Just (Array e) -> case V.toList e of
-        --String "WRONG_PASSWORD" : _ -> return CredentialsError
-        --String "USER_REQUIRED" : _ -> return CredentialsError
+        String "Release not found." : _ -> return NoRelease
+        String "Artist not found." : _ -> return NoArtist
         String "RATELIMIT" : String d : _ ->
             RateLimitError <$> ((o .: "json") >>= (.: "ratelimit")) <*> pure d
-        --String "SUBREDDIT_REQUIRED" : _ -> return NoSubredditSpecified
-        --String "ALREADY_SUB" : _ -> return AlreadySubmitted
-        --String "NO_URL" : _ -> return NoURLSpecified
-        --String "NO_NAME" : _ -> return NoName
-        --String "NO_TEXT" : _ : String f : _ -> return $ NoText f
-        --String "COMMENT_DELETED" : _ -> return CommentDeleted
-        --String "DELETED_LINK" : _ -> return LinkDeleted
-        --String "BAD_SR_NAME" : _ -> return BadSubredditName
-        --String "BAD_CAPTCHA" : _ -> CaptchaError <$> (o .: "json" >>= (.: "captcha"))
+        String "Master Release not found." : _ -> return NoMasterRelease
+        String "Label not found." : _ -> return NoLabel
         _ -> return $ DiscogsError o
       _ -> mempty
   parseJSON _ = mempty
