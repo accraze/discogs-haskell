@@ -19,7 +19,7 @@ data DiscogsError = DiscogsError Object
 
 instance FromJSON DiscogsError where
   parseJSON (Object o) = do
-    Array errors <- o .: "json" >>= (.: "message")
+    Array errors <- o .: "message"
     case errors !? 0 of
       Just (Array e) -> case V.toList e of
         String "Release not found." : _ -> return NoRelease
