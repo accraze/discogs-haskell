@@ -17,24 +17,24 @@ library
     Discogs
     Discogs.Actions
     Discogs.Actions.Artist
+    Discogs.Actions.Label
+    Discogs.Actions.Master
+    Discogs.Actions.Release
     Discogs.Types
     Discogs.Types.Artist
+    Discogs.Types.Label
+    Discogs.Types.Master
     Discogs.Types.Release
   other-modules:
     Discogs.Routes
     Discogs.Routes.Artist
-    Discogs.Actions.Release
     Discogs.Login
     Discogs.Routes.Release
     Discogs.Types.Discogs
     Discogs.Types.Error
-    Discogs.Types.Label
     Discogs.Types.User
-    Discogs.Actions.Label
-    Discogs.Actions.Master
     Discogs.Routes.Label
     Discogs.Routes.Master
-    Discogs.Types.Master
     Discogs.Types.Pagination
   hs-source-dirs:      src/
   default-extensions:

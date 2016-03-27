@@ -1,3 +1,9 @@
+-- | This main module contains the building blocks to operate the library.
+--   It exports functionality for running built 'DiscogsT' actions, as well
+--   as re-exporting a few helpful types from around the library. Not every
+--   type is exported, however, due to clashing record fields. It's recommended
+--   to import modules from @Discogs.Types.*@ qualified so that you can use all
+--   the record fields without having to deal with ambiguous functions.
 module Discogs
   (runDiscogs
   , runDiscogsAnon
@@ -62,7 +68,7 @@ runDiscogs :: MonadIO m => Text -> Text -> DiscogsT m a -> m (Either (APIError D
 runDiscogs user pass = runDiscogsWith def { loginMethod = Credentials user pass }
 
 -- | Run a 'Discogs' action (or a 'DiscogsT' transformer action). This uses the default logged-out settings, so
---   you won't be able to do anything that requires authentication (like checking messages or making a post).
+--   you won't be able to do anything that requires authentication (like searching or marketplace related functions).
 --   At the moment, authentication isn't statically checked, so it'll return a runtime error if you try to do
 --   anything you don't have permissions for.
 runDiscogsAnon :: MonadIO m => DiscogsT m a -> m (Either (APIError DiscogsError) a)
