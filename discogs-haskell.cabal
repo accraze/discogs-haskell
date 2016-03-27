@@ -2,8 +2,8 @@ name:                discogs-haskell
 version:             0.0.5.0
 synopsis:            Client for Discogs REST API
 description:         Please see README.md
-homepage:            http://github.com/accraze/discogs-haskell#readme
-license:             BSD3
+homepage:            http://github.com/accraze/discogs-haskell
+license:             MIT
 license-file:        LICENSE
 author:              accraze
 maintainer:          accraze@gmail.com
@@ -84,4 +84,13 @@ test-suite test
     Discogs.Types.ArtistSpec
     Discogs.Types.ReleaseSpec
   ghc-options: -Wall
+
+source-repository head
+  type:     git
+  location: http://github.com/accraze/discogs-haskell
+
+source-repository this
+  type:     git
+  location: http://github.com/accraze/discogs-haskell
+  tag:      0.0.5.0
 
