@@ -147,4 +147,4 @@ $ stack test
 
 ## License:
 
-[BSD3](https://github.com/accraze/discogs-haskell/blob/master/LICENSE) License 2016 © Andy Craze
+[MIT](https://github.com/accraze/discogs-haskell/blob/master/LICENSE) License 2016 © Andy Craze
