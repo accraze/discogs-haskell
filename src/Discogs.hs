@@ -45,11 +45,11 @@ data DiscogsOptions =
 instance Default DiscogsOptions where
   def = DiscogsOptions True Nothing Anonymous Nothing
 
--- | The default set of options
+-- | The default set of options (ie: Anonymous login)
 defaultDiscogsOptions :: DiscogsOptions
 defaultDiscogsOptions = def
 
--- | Should we log in to Discogs? If so, should we use a stored set of credentials
+-- | Are we logging in to Discogs? If yes, should we use a stored set of credentials
 --   or get a new fresh set?
 data LoginMethod = Anonymous -- ^ Don't login, instead use an anonymous account
                  | Credentials Text Text -- ^ Login using the specified username and password
@@ -69,14 +69,12 @@ runDiscogs user pass = runDiscogsWith def { loginMethod = Credentials user pass 
 
 -- | Run a 'Discogs' action (or a 'DiscogsT' transformer action). This uses the default logged-out settings, so
 --   you won't be able to do anything that requires authentication (like searching or marketplace related functions).
---   At the moment, authentication isn't statically checked, so it'll return a runtime error if you try to do
---   anything you don't have permissions for.
 runDiscogsAnon :: MonadIO m => DiscogsT m a -> m (Either (APIError DiscogsError) a)
 runDiscogsAnon = runDiscogsWith def
 
----- | Run a 'Discogs' or 'DiscogsT' action with custom settings. You probably won't need this function for
-----   most things, but it's handy if you want to persist a connection over multiple 'Discogs' sessions or
-----   use a custom user agent string.
+---- | Run a 'Discogs' or 'DiscogsT' action with custom settings. Us this
+----   if you want to persist a connection over multiple 'Discogs' sessions or
+----   use a custom user-agent string.
 runDiscogsWith :: MonadIO m => DiscogsOptions -> DiscogsT m a -> m (Either (APIError DiscogsError) a)
 runDiscogsWith opts discogs = liftM dropResume $ runResumeDiscogsWith opts discogs
 
