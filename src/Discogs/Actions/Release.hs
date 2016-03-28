@@ -1,5 +1,4 @@
--- | Contains release-related actions, like finding releases or retrieving an
---   artist's information.
+-- | Contains release related actions, like finding a specific release by id.
 module Discogs.Actions.Release
   ( getRelease ) where
 
@@ -12,6 +11,12 @@ import Data.Default.Class
 import Data.Text (Text)
 import qualified Data.Text as Text
 
--- | Get the information Discogs exposes on release with the specified id
+-- | Get release with the specified id
+--
+-- GET \/releases\/:releaseId
+--
+-- @
+--     runDiscogsAnon $ Discogs.Actions.getRelease $ ReleaseID "249504"
+-- @
 getRelease :: Monad m => ReleaseID -> DiscogsT m Release
 getRelease = runRoute . Route.getRelease
