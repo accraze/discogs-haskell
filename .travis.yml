@@ -8,8 +8,22 @@ sudo: false
 notifications:
   email: false
 
-script:
-  - cabal configure --enable-tests && cabal build && cabal test test
-
 install:
   - cabal install --only-dependencies --enable-tests --reorder-goals --max-backjumps=-1
+
+script:
+  - cabal configure --enable-tests && cabal build && cabal test test
+  - cabal check
+
+  # tests that a source-distribution can be generated
+  - cabal sdist
+
+  # check that the generated source-distribution can be built & installed
+  - export SRC_TGZ=$(cabal info . | awk '{print $2 ".tar.gz";exit}') ;
+    cd dist/;
+    if [ -f "$SRC_TGZ" ]; then
+      cabal install "$SRC_TGZ";
+    else
+      echo "expected '$SRC_TGZ' not found";
+      exit 1;
+    fi
