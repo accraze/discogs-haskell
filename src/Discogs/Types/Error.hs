@@ -1,6 +1,8 @@
 module Discogs.Types.Error
   (DiscogsError(..)) where
 
+import Control.Applicative
+import Control.Monad
 import Data.Aeson
 import Data.Monoid
 import Data.Text (Text)
