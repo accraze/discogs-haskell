@@ -10,35 +10,37 @@ import Data.Aeson
 import Data.Monoid
 import Data.Text (Text)
 import Network.API.Builder.Query
-
+-- | This is required to look up an artists. Example: \'108713\'
+The Artist ID
 newtype ArtistID = ArtistID Text
   deriving (Show, Read, Eq, Ord, Generic)
 
 instance FromJSON ArtistID
 
-
+-- | The Artist resource represents a person in the Discogs database who contributed to a Release in some capacity.
 data Artist =
   Artist { 
-        profile :: Maybe Text
-       , id :: Int
-       , releases_url :: Text
-       , resource_url :: Maybe Text
+        profile :: Maybe Text -- Artist profile info
+       , id :: Int -- The Artist ID
+       , releases_url :: Text -- Url with Artist's releases 
+       , resource_url :: Maybe Text -- Url with Artist resources
        , uri :: Maybe Text
-       , data_quality :: Text
-       , namevariations :: Maybe [Text]
-       , urls :: [Text] 
+       , data_quality :: Text 
+       , namevariations :: Maybe [Text] -- Different names for the Artist.
+       , urls :: [Text]  -- 
        , images :: !Array
        , members :: !Array }
   deriving (Show, Eq, Read, Generic)
 
 instance FromJSON Artist
 
-
+-- | This is a list of type Image.
 data ImagesList = ImagesList {imagesList :: !Array}
     deriving (Show, Eq, Generic)
 
 instance FromJSON ImagesList
 
+-- | This is a image of an Artist which has been submitted by a contributor.
 data Image = Image {height :: Int
                 , iResource_url :: String
                 , iType :: String
@@ -56,6 +58,7 @@ instance FromJSON Image where
                                  <*> o .: "width"
     parseJSON _ = mempty
 
+-- | This is a list of type Member.
 data MembersList 
         = MembersList {
                     membersList :: !Array
@@ -65,6 +68,7 @@ instance FromJSON MembersList where
     parseJSON (Object o) = MembersList <$> (o .: "members")
     parseJSON _ = mzero
 
+-- | This is a member that belongs to the Artists. Eg: members of a band, contributors to a project.
 data Member = Member {active :: Bool
                 , id2 :: Integer
                 , name :: String
@@ -73,6 +77,7 @@ data Member = Member {active :: Bool
 
 instance FromJSON Member
 
+-- | This is a list of type ArtistRelease
 data ReleaseArtistList
         = ReleaseArtistList {
                     releaseArtists :: !Array
@@ -82,6 +87,7 @@ instance FromJSON ReleaseArtistList where
     parseJSON (Object o) = ReleaseArtistList <$> (o .: "artists")
     parseJSON _ = mzero
 
+-- | This a Release that the Artist has performed on.
 data ReleaseArtist = ReleaseArtist {anv :: String
                 , rId :: Int
                 , join :: String
