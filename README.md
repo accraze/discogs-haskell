@@ -1,7 +1,8 @@
-# Discogs-Haskell
-Haskell Client for Discogs REST API.
+# Discogs-Haskell [![travis build](https://img.shields.io/travis/accraze/discogs-haskell.svg)](https://travis-ci.org/accraze/discogs-haskell)
 
-Work in Progress
+Haskell Client for Discogs REST API. Based on a Monad Transformer Stack.
+
+Only [database actions](https://www.discogs.com/developers/#page:database) (with the exception of searching) are implemented at this time. If you are interested in hacking on this, checkout the contributing doc for more info.
 
 ## Build Locally
 
@@ -24,7 +25,7 @@ Then you can use the `ghci` REPL to use the client.
 
 ```
 $ stack ghci
-.....   
+.....
 ghci> runDiscogsAnon $ Discogs.Actions.getRelease $ ReleaseID "249504"
 ```
 
