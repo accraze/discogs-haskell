@@ -14,6 +14,7 @@ import Network.API.Builder.Query
 import Discogs.Types.Artist
 import Discogs.Types.Pagination
 
+-- | A company that was involved with a specific Label.
 data Company
     = Company {  
              catno  :: String
@@ -37,7 +38,8 @@ newtype LabelID = LabelID Text
   deriving (Show, Read, Eq, Ord, Generic)
 instance FromJSON LabelID
 
-
+-- | The Label resource represents a label, company, recording studio, 
+-- location, or other entity involved with Artists and Releases. 
 data Label
     = Label {
              id :: Int
@@ -55,6 +57,7 @@ data Label
 
 instance FromJSON Label
 
+-- | This is for any sort of associated sub-label, siblings, etc.
 data Sublabel
     = Sublabel {
             sublabel_id :: Int
@@ -68,7 +71,7 @@ instance FromJSON Sublabel where
                                  <*> o .: "resource_url"
     parseJSON _ = mempty
 
-
+-- | A list of type LabelRelease.
 data LabelReleaseList
     = LabelReleaseList {  
                     pagination  :: Pagination
@@ -77,6 +80,7 @@ data LabelReleaseList
 
 instance FromJSON LabelReleaseList
 
+-- | A release that was put out by a Label.
 data LabelRelease
     = LabelRelease {  artist              :: String
                     ,release_catno        :: String
