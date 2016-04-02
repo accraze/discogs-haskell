@@ -2,7 +2,7 @@
 
 Haskell Client for Discogs REST API. Based on a Monad Transformer Stack.
 
-Only [database actions](https://www.discogs.com/developers/#page:database) (with the exception of searching) are implemented at this time. If you are interested in hacking on this, checkout the contributing doc for more info.
+This does not the wrap complete API yet. Only [database actions](https://www.discogs.com/developers/#page:database) (with the exception of searching) are implemented at this time. If you are interested in hacking on this, checkout the [CONTRIBUTING](https://github.com/accraze/discogs-haskell/blob/master/CONTRIBUTING.md) doc for more info.
 
 ## Build Locally
 
