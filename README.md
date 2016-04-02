@@ -4,6 +4,15 @@ Haskell Client for Discogs REST API. Based on a Monad Transformer Stack.
 
 This does not the wrap complete API yet. Only [database actions](https://www.discogs.com/developers/#page:database) (with the exception of searching) are implemented at this time. If you are interested in hacking on this, checkout the [CONTRIBUTING](https://github.com/accraze/discogs-haskell/blob/master/CONTRIBUTING.md) doc for more info.
 
+## Install
+The library is available on Hackage. You can install doing:
+```
+$ cabal install discogs-haskell
+```
+
+## Docs
+You can view the docs on Hackage. Check out the [action modules](https://hackage.haskell.org/package/discogs-haskell-0.0.5.0/docs/Discogs-Actions.html) to see how to get data from Discogs.
+
 ## Build Locally
 
 To install and build locally, clone the repo:
