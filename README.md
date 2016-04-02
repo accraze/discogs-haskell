@@ -7,7 +7,7 @@ This does not the wrap complete API yet. Only [database actions](https://www.dis
 ## Install
 The library is available on Hackage. You can install doing:
 ```
-$ cabal install discogs-haskell
+$ cabal install discogs-haskell-0.0.5.0
 ```
 
 ## Docs
