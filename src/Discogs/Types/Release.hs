@@ -16,12 +16,14 @@ import Discogs.Types.Label
 import Discogs.Types.User
 import Discogs.Types.Pagination
 
+-- | This is required to look up a release. Example: \'249504\'
 newtype ReleaseID = ReleaseID Text
   deriving (Show, Read, Eq, Ord, Generic)
 
-
 instance FromJSON ReleaseID
 
+-- | The Release resource represents a particular physical or digital object 
+-- released by one or more Artists.
 data Release =
   Release { 
         title :: Text
@@ -59,7 +61,7 @@ data Release =
 
 instance FromJSON Release
 
-
+-- | This is a list containg Releases.
 data ReleaseList
     = ReleaseList {
           releases    :: !Array
@@ -72,6 +74,7 @@ instance FromJSON ReleaseList where
                         <*> (o .: "pagination")
   parseJSON _ = mzero
 
+-- | This is an artist who performs on a release.
 data ArtistRelease
     = ArtistRelease { artist           :: String
                       ,r_id            :: Int
@@ -97,7 +100,7 @@ instance FromJSON ArtistRelease where
               <*> (o .: "year")
   parseJSON _ = mzero
 
-
+-- | This is the format of a release. Example: 2 X 7" Vinyl 
 data Format
     = Format {  descriptions  :: Maybe Array
                 ,name    :: Int
@@ -106,6 +109,7 @@ data Format
 
 instance FromJSON Format
 
+-- | This is the Release's identifier (barcode, etc.)
 data Identifier
     = Identifier {  iType  :: String
                  , value   :: String
@@ -117,7 +121,7 @@ instance FromJSON Identifier where
               <*> (o .: "value")
   parseJSON _ = mzero
 
-
+-- | This is a track contained on a Release.
 data Track
     = Track {  duration  :: String
             ,  position  :: String
@@ -127,6 +131,7 @@ data Track
 
 instance FromJSON Track
 
+-- | This is a Video resource associated with a Release.
 data Video
     = Video {  v_description  :: String
              , v_duration   :: Int
