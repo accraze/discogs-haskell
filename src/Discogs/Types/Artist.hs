@@ -10,8 +10,8 @@ import Data.Aeson
 import Data.Monoid
 import Data.Text (Text)
 import Network.API.Builder.Query
--- | This is required to look up an artists. Example: \'108713\'
-The Artist ID
+
+-- | This is required to look up an artist. Example: \'108713\'
 newtype ArtistID = ArtistID Text
   deriving (Show, Read, Eq, Ord, Generic)
 
@@ -77,7 +77,7 @@ data Member = Member {active :: Bool
 
 instance FromJSON Member
 
--- | This is a list of type ArtistRelease
+-- | This is a list of type ReleaseArtist
 data ReleaseArtistList
         = ReleaseArtistList {
                     releaseArtists :: !Array
