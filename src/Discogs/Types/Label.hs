@@ -14,26 +14,7 @@ import Network.API.Builder.Query
 import Discogs.Types.Artist
 import Discogs.Types.Pagination
 
--- | A company that was involved with a specific Label.
-data Company
-    = Company {  
-             catno  :: String
-            , entity_type    :: String
-            , entity_type_name :: Maybe String
-            , company_id :: Int
-            , company_name :: String
-            , company_resource_url :: String
-            } deriving (Show, Generic, Eq)
-
-instance FromJSON Company where 
-    parseJSON (Object o) = Company <$> o .: "catno" 
-                                   <*> o .: "entity_type"
-                                   <*> o .: "entity_type_name"
-                                   <*> o .: "id"
-                                   <*> o .: "name"
-                                   <*> o .: "resource_url"
-    parseJSON _ = mempty
-
+-- | This is required to look up a release. Example: \'1\'
 newtype LabelID = LabelID Text
   deriving (Show, Read, Eq, Ord, Generic)
 instance FromJSON LabelID
@@ -103,4 +84,24 @@ instance FromJSON LabelRelease where
                              <*> o .: "thumb"
                              <*> o .: "title"
                              <*> o .: "year"
+    parseJSON _ = mempty
+
+-- | A company that was involved with a specific Label.
+data Company
+    = Company {  
+             catno  :: String
+            , entity_type    :: String
+            , entity_type_name :: Maybe String
+            , company_id :: Int
+            , company_name :: String
+            , company_resource_url :: String
+            } deriving (Show, Generic, Eq)
+
+instance FromJSON Company where 
+    parseJSON (Object o) = Company <$> o .: "catno" 
+                                   <*> o .: "entity_type"
+                                   <*> o .: "entity_type_name"
+                                   <*> o .: "id"
+                                   <*> o .: "name"
+                                   <*> o .: "resource_url"
     parseJSON _ = mempty
