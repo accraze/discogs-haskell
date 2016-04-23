@@ -1,7 +1,7 @@
 name:                discogs-haskell
 version:             0.0.5.0
 synopsis:            Client for Discogs REST API
-description:         Please see README.md
+description:         Contains actions to retrieve data from the Discogs database.
 homepage:            http://github.com/accraze/discogs-haskell
 license:             MIT
 license-file:        LICENSE
