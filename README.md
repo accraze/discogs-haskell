@@ -40,4 +40,4 @@ ghci> runDiscogsAnon $ Discogs.Actions.getRelease $ ReleaseID "249504"
 
 ## License:
 
-[MIT](https://github.com/accraze/discogs-haskell/blob/master/LICENSE) License 2016 © Andy Craze
+[MIT](https://github.com/accraze/discogs-haskell/blob/master/LICENSE) License 2016-2018 © Andy Craze
